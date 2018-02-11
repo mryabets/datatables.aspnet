@@ -47,8 +47,9 @@ namespace DataTables.AspNet.AspNetCore
             IsSortable = sortable;
                         
             IsSearchable = searchable;
-            if (!IsSearchable) Search = null;
-            else Search = search ?? new Search();
+            //if (!IsSearchable) Search = null;
+            //else Search = search ?? new Search();
+            Search = search;
         }
 
 
