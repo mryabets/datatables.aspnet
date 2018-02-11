@@ -23,7 +23,7 @@ THE SOFTWARE.
 */
 #endregion Copyright
 
-using DataTables.AspNet.AspNet5;
+using DataTables.AspNet.Mvc5;
 
 namespace DataTables.AspNet.Extensions.DapperExtensions.Tests
 {
@@ -35,8 +35,8 @@ namespace DataTables.AspNet.Extensions.DapperExtensions.Tests
         { return new Options(); }
         public static Core.ISearch MockSearch(string searchValue, bool isRegex)
         { return new Search(searchValue, isRegex); }
-        public static Core.ISort MockSort(int order, string direction)
-        { return new Sort(order, direction); }
+        public static Core.ISort MockSort(string field, int order, string direction)
+        { return new Sort(field, order, direction); }
     }
 
 
