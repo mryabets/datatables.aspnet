@@ -133,12 +133,14 @@ namespace DataTables.AspNet.WebApi2
 				// Parses Field value.
 				var columnField = values.GetValue(String.Format(names.ColumnField, counter));
 				string _columnField = null;
-				if (!Parse<string>(columnField, out _columnField)) break;
+			    var hasField = Parse<string>(columnField, out _columnField);
 
 				// Parses Name value.
 				var columnName = values.GetValue(String.Format(names.ColumnName, counter));
 				string _columnName = null;
-				if (!Parse<string>(columnName, out _columnName)) break;
+			    var hasName = Parse<string>(columnName, out _columnName);
+
+			    if (!hasField && !hasName) break;
 
 				// Parses Orderable value.
 				var columnSortable = values.GetValue(String.Format(names.IsColumnSortable, counter));
@@ -160,7 +162,7 @@ namespace DataTables.AspNet.WebApi2
 				bool _columnSearchRegex = false;
 				Parse<bool>(columnSearchRegex, out _columnSearchRegex);
 
-				var search = new Search(_columnSearchValue, _columnSearchRegex, _columnField);
+			    var search = _columnSearchValue != null ? new Search(_columnSearchValue, _columnSearchRegex) : null;
 
 				// Instantiates a new column with parsed elements.
 				var column = new Column(_columnName, _columnField, _columnSearchable, _columnSortable, search);
